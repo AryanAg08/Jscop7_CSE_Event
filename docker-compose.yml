@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    build: ./server
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./server:/app
+    environment:
+      - NODE_ENV=production
+
+  client:
+    build: ./client
+    ports:
+      - "5000:5000" # Maps Nginx port 80 to local 3000
+    depends_on:
+      - server
