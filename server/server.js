@@ -6,6 +6,7 @@ const config = require('./config/config');
 const authRoutes = require('./routes/auth');
 const tableRoutes = require('./routes/table');
 const aiRoutes = require('./routes/ai');
+const logger = require("morgan");
 const leaderboardRoutes = require('./routes/leaderboard');
 const fs = require('fs');
 // Initialize express app
@@ -18,6 +19,8 @@ const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
+
+app.use(logger());
 
 // Middleware
 app.use(cors(
